@@ -169,7 +169,7 @@ const App = () => {
 	
 	useEffect(() => {
 		checkIfWalletIsConnected();
-	}, []);
+	});
 
 	const renderNotConnectedContainer = () => (
 		<button
