@@ -5,7 +5,7 @@ import { Loading } from 'react-loading-dot';
 import myEpicNft from './utils/MyEpicNFT.json';
 import twitterLogo from './assets/twitter-logo.svg';
 
-const OPENSEA_LINK ='https://testnets.opensea.io/collection/stoicnft-eimjddcifq';
+const OPENSEA_LINK ='https://testnets.opensea.io/collection/stoicnft-sbrr0z1q48';
 const TOTAL_MINT_COUNT = 55;
 const TWITTER_LINK = 'https://twitter.com/Swanagan';
 const TWITTER_HANDLE = 'eewatchguy.eth';
