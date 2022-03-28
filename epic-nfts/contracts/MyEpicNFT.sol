@@ -20,15 +20,19 @@ contract MyEpicNFT is ERC721URIStorage {
   // This is our SVG code. All we need to change is the word that's displayed. Everything else stays the same.
   // So, we make a baseSvg variable here that all our NFTs can use.
   // We split the SVG at the part where it asks for the background color.
-  string svgPartOne = "<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='xMinYMin meet' viewBox='0 0 350 350'><style>.base { fill: white; font-family: serif; font-size: 24px; }</style><rect width='100%' height='100%' fill='";
-  string svgPartTwo = "'/><text x='50%' y='50%' class='base' dominant-baseline='middle' text-anchor='middle'>";
 
-  string[] firstWords = ["Brave", "Kind", "Fair", "Modest", "Wise"];
-  string[] secondWords = ["Empathetic", "Resilient", "Shrewd", "Humble"];
-  string[] thirdWords = ["Stoic", "Servant", "Student", "Leader"];
+  string svgPartOne = "<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='xMinYMin meet' viewBox='0 0 350 350'><style>.base { fill: white; font-family: Helvetica, sans-serif; font-size: 45px; font-weight: 1000 }</style><rect width='100%' height='100%' fill='";
+  string svgPartTwo = "'/><text y='50%' class='base' text-anchor='middle'><tspan x='50%'>";
+  string svgPartThree = "</tspan><tspan x='50%' dy='12%'>";
+  string svgPartFour = "</tspan><tspan x='50%' dy='12%'>";
+  string svgEndString = "</tspan></text></svg>";
+
+  string[] firstWords = ["Brave", "Kind", "Fair", "Modest", "Wise", "Strong"];
+  string[] secondWords = ["Empathetic", "Resilient", "Cunning", "Humble", "Optimistic"];
+  string[] thirdWords = ["Stoic", "Servant", "Student", "Leader", "Philosopher"];
 
   // Get fancy with it! Declare a bunch of colors.
-  string[] colors = ["#22577A", "#38A3A5", "#57CC99", "#80ED99", "#C7F9CC"];
+  string[] colors = ["#264653", "#2A9D8F", "#E9C46A", "#F4A261", "#E76F51", "#000000"];
 
   uint256 maxNumberNFTs = 55;
 
@@ -77,12 +81,10 @@ contract MyEpicNFT is ERC721URIStorage {
     string memory first = pickRandomFirstWord(newItemId);
     string memory second = pickRandomSecondWord(newItemId);
     string memory third = pickRandomThirdWord(newItemId);
-    string memory combinedWord = string(abi.encodePacked(first, second, third));
-
     // Add the random color in.
     string memory randomColor = pickRandomColor(newItemId);
     // I concatenate it all together, and then close the <text> and <svg> tags.
-    string memory finalSvg = string(abi.encodePacked(svgPartOne, randomColor, svgPartTwo, combinedWord, "</text></svg>"));
+    string memory finalSvg = string(abi.encodePacked(svgPartOne, randomColor, svgPartTwo, first, svgPartThree, second, svgPartFour, third, svgEndString));
     // Get all the JSON metadata in place and base64 encode it.
     string memory json = Base64.encode(
         bytes(
@@ -90,7 +92,7 @@ contract MyEpicNFT is ERC721URIStorage {
                 abi.encodePacked(
                     '{"name": "',
                     combinedWord,
-                    '", "description": "A highly acclaimed collection of squares.", "image": "data:image/svg+xml;base64,',
+                    '", "description": "A highly acclaimed collection of stoic traits.", "image": "data:image/svg+xml;base64,',
                     Base64.encode(bytes(finalSvg)),
                     '"}'
                 )
