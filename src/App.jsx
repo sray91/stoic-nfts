@@ -11,7 +11,7 @@ const TWITTER_LINK = 'https://twitter.com/Swanagan';
 const TWITTER_HANDLE = 'eewatchguy.eth';
 
 // I moved the contract address to the top for easy access.
-const CONTRACT_ADDRESS = '0x9905Bf40e406E44f436f60A8b08BfeF667Ac6C1a';
+const CONTRACT_ADDRESS = '0xCbCf293c4B7D02FcB9186F813423501F78bc7953';
 
 const App = () => {
 	const [currentAccount, setCurrentAccount] = useState('');
